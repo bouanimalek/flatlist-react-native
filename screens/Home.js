@@ -4,13 +4,8 @@ import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 import { color } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
 
 const Home = ({ navigation }) => {
-  let dataObj = {
-    name: "Selma",
-    age: 29,
-    color: "royalblue",
-  };
   const handlePress = () => {
-    navigation.navigate("Portfolio", dataObj);
+    navigation.navigate("Portfolio");
     // navigation.setOptions({
     //   title: "Nouveau titre",
     // });

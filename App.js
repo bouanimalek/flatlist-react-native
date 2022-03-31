@@ -1,75 +1,42 @@
 import React from "react";
-import { Easing } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import {
-  createStackNavigator,
-  CardStyleInterpolators,
-} from "@react-navigation/stack";
-import Home from "./screens/Home";
-import Portfolio from "./screens/Portfolio";
+import Drawer from "./routes/DrawerNav";
+import HomeStackScreen from "./routes/HomeStackNav";
+import PortfolioStackScreen from "./routes/PortfolioStackNav";
+import { MaterialIcons } from "@expo/vector-icons";
 
-const Stack = createStackNavigator();
-const openConfig = {
-  animation: "spring",
-  config: {
-    stiffness: 1000,
-    damping: 35,
-    mass: 3,
-    overshootClamping: false,
-    restDisplacementThreshold: 0.01,
-    restSpeedThreshold: 0.01,
-  },
-};
-
-const closeConfig = {
-  animation: "timing",
-  config: {
-    duration: 900,
-    easing: Easing.ease,
-  },
-};
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerStyle: { backgroundColor: "slateblue" },
-          headerTitleStyle: {
-            fontWeight: "bold",
-            textTransform: "uppercase",
+      <Drawer.Navigator
+        drawerStyle={{
+          backgroundColor: "grey",
+          width: "100%",
+        }}
+        drawerContentOptions={{
+          activeTintColor: "white",
+          inactiveTintColor: "yellow",
+          itemStyle: {
+            marginVertical: 30,
           },
-          headerTintColor: "white",
-          gestureEnabled: true,
-          gestureDirection: "horizontal",
-          // transitionSpec: {
-          //   open: openConfig,
-          //   close: closeConfig,
-          // },
-          cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
         }}
       >
-        <Stack.Screen
+        <Drawer.Screen
           name="Home"
-          component={Home}
-          options={{ title: "Accueil" }}
+          component={HomeStackScreen}
+          options={{
+            title: "Accueil",
+            drawerIcon: () => (
+              <MaterialIcons name="home" size={18} color="white" />
+            ),
+          }}
         />
-        <Stack.Screen
+        <Drawer.Screen
           name="Portfolio"
-          component={Portfolio}
-          options={({ route }) => ({
-            title: route.params.name,
-            headerStyle: { backgroundColor: route.params.color },
-          })}
-          // options={{
-          //   headerStyle: { backgroundColor: "slateblue" },
-          //   headerTitleStyle: {
-          //     fontWeight: "bold",
-          //     textTransform: "uppercase",
-          //   },
-          //   headerTintColor: "white",
-          // }}
+          component={PortfolioStackScreen}
+          options={{ title: "Ma page" }}
         />
-      </Stack.Navigator>
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 }
