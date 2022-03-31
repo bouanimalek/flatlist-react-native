@@ -5,7 +5,7 @@ import { color } from "react-native/Libraries/Components/View/ReactNativeStyleAt
 
 const Home = ({ navigation }) => {
   const handlePress = () => {
-    navigation.navigate("Portfolio");
+    navigation.navigate("Profil");
     // navigation.setOptions({
     //   title: "Nouveau titre",
     // });
