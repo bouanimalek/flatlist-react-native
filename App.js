@@ -1,25 +1,16 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
+import { MaterialIcons } from "@expo/vector-icons";
 import Drawer from "./routes/DrawerNav";
 import HomeStackScreen from "./routes/HomeStackNav";
 import PortfolioStackScreen from "./routes/PortfolioStackNav";
-import { MaterialIcons } from "@expo/vector-icons";
+import CustomDrawerContent from "./components/CustomDrawerContent";
 
 export default function App() {
   return (
     <NavigationContainer>
       <Drawer.Navigator
-        drawerStyle={{
-          backgroundColor: "grey",
-          width: "100%",
-        }}
-        drawerContentOptions={{
-          activeTintColor: "white",
-          inactiveTintColor: "yellow",
-          itemStyle: {
-            marginVertical: 30,
-          },
-        }}
+        drawerContent={(props) => <CustomDrawerContent {...props} />}
       >
         <Drawer.Screen
           name="Home"
